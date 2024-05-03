@@ -1,0 +1,4 @@
+- Step by step, each step fades in on the right panel, spacebar to go to next step
+- make sure there are clear instruction on what to do: setup the given, press space to go through steps
+- add reset button to restart the prop
+- **add given and going or enunciationn**

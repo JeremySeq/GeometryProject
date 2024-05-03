@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposition 1.9</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Geometry Project - Jeremy Sequeira - Proposition 1.9</h1>
+
+    <div class="row">
+        <canvas id="canvas"></canvas>
+
+        <div class="column">
+            <div class="instructions" id="instructions">
+                Press space for the next step
+            </div>
+
+            <div class="side-panel">
+                <h2><i>To bisect a given rectilineal angle.</i></h2>
+                <h2>Construction</h2>
+                <p class="construction">
+                    <mark></mark>
+                    <!-- 1. Draw given rectilineal angle ∠ABC<br>
+                    2. Take random point D on <r>AB</r><br>
+                    3. Cut <r>BE</r> from <r>BC</r> equal to <r>BD</r><br>
+                    4. Join <r>DE</r><br>
+                    5. Create equilateral triangle DEF on <r>DE</r><br>
+                    6. Join <r>BF</r><br> -->
+                </p>
+    
+                <h2>Proof</h2>
+                <p>
+                    7. <r>BD</r> = <r>BE</r> (step 3)<br>
+                    8. <r>DF</r> = <r>EF</r> (step 5)<br>
+                    9. <r>BF</r> is common to both triangles<br>
+                    10. Therefore, △BEF = △BDF and ∠DBF = ∠EBF<br>
+                    An angle is bisected when the two angles are equal.<br>Therefore ∠ABC has been bisected by line <r>BF</r>
+                </p>
+    
+                <h2 class="qef">Q.E.F.</h2>
+            </div>
+
+            <button class="reset-btn">Reset</button>
+        </div>
+        
+    </div>
+
+    <script src="util.js"></script>
+    <script src="prop1.1.js"></script>
+    <script src="prop1.9.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
