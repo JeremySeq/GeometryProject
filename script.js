@@ -1,11 +1,3 @@
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
-    };
-}
-
 c.width = window.innerWidth/2;
 c.height = window.innerHeight - window.innerHeight/8;
 ctx.lineWidth = 2;
@@ -68,7 +60,7 @@ var resetButton = document.getElementsByClassName("reset-btn")[0];
 instructions.innerHTML = "Choose point A"
 updateConstruction(step1txt);
 
-canvas.addEventListener('click', function(evt) {
+c.addEventListener('click', function(evt) {
     var mousePos = getMousePos(canvas, evt);
 
     if (step == 0 && A == null) {

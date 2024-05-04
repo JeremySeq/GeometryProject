@@ -1,20 +1,21 @@
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
 
+
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+}
+
 function drawCircle(x, y, radius) {
     // ctx.arc(x, y, radius, startAngle, endAngle);
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2*Math.PI);
     ctx.stroke();
     ctx.closePath();
-}
-
-function drawLine(x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.closePath();
-    ctx.stroke();
 }
 
 function highlightLine(vec1, vec2, color) {
@@ -48,18 +49,18 @@ function drawText(x, y, text) {
     ctx.fillText(text, x, y);
 }
 
-function labelPoint(x, y, text) {
-    drawPoint(x, y);
-    drawText(x + 16, y + 16, text);
-}
 
 function labelPoint(vec, text) {
     drawPoint(vec[0], vec[1]);
     drawText(vec[0] + 16, vec[1] + 16, text);
 }
 
-function distance(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+function labelPointWithColor(vec, text, color) {
+    prevStyle = ctx.fillStyle;
+    ctx.fillStyle = color;
+    drawPoint(vec[0], vec[1]);
+    drawText(vec[0] + 16, vec[1] + 16, text);
+    ctx.fillStyle = prevStyle;
 }
 
 function distance(vec1, vec2) {
