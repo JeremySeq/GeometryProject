@@ -70,6 +70,7 @@ updateConstruction(step1txt);
 
 canvas.addEventListener('click', function(evt) {
     var mousePos = getMousePos(canvas, evt);
+
     if (step == 0 && A == null) {
         A = [mousePos.x, mousePos.y];
         drawPoint(A[0], A[1]);
@@ -109,50 +110,58 @@ document.addEventListener("keypress", function(event) {
     if (event.code == "Space") {
 
         flashInstructions();
-
-        if (step == 3) {
-            step3();
-            step = 4;
-            instructions.innerHTML = pressSpaceInstruction
-            updateConstruction(step4txt);
-        } else if (step == 4) {
-            step4();
-            step = 5;
-            instructions.innerHTML = pressSpaceInstruction
-            updateConstruction(step5txt);
-        } else if (step == 5) {
-            step5();
-            step = 6;
-            instructions.innerHTML = pressSpaceInstruction
-            updateConstruction(step6txt);
-        } else if (step == 6) {
-            step6();
-            step7()
-            step = 7;
-            instructions.innerHTML = pressSpaceInstruction
-            updateConstruction("");
-            updateProof(step7txt);
-        } else if (step == 7) {
-            step8();
-            step = 8;
-            instructions.innerHTML = pressSpaceInstruction
-            updateProof(step8txt);
-        } else if (step == 8) {
-            step9();
-            step = 9;
-            instructions.innerHTML = pressSpaceInstruction
-            updateProof(step9txt);
-        } else if (step == 9) {
-            step10();
-            step = 10;
-            instructions.innerHTML = pressSpaceInstruction
-            updateProof(step10txt)
-        } else if (step == 10) {
-            // step10();
-            step = 11;
-            instructions.innerHTML = pressSpaceInstruction
-            updateProof("");
-            qef.hidden = false;
+        switch (step) {
+            case 3:
+                step3();
+                step = 4;
+                instructions.innerHTML = pressSpaceInstruction
+                updateConstruction(step4txt);
+                break;
+            case 4:
+                step4();
+                step = 5;
+                instructions.innerHTML = pressSpaceInstruction
+                updateConstruction(step5txt);
+                break;
+            case 5:
+                step5();
+                step = 6;
+                instructions.innerHTML = pressSpaceInstruction
+                updateConstruction(step6txt);
+                break;
+            case 6:
+                step6();
+                step7()
+                step = 7;
+                instructions.innerHTML = pressSpaceInstruction
+                updateConstruction("");
+                updateProof(step7txt);
+                break;
+            case 7:
+                step8();
+                step = 8;
+                instructions.innerHTML = pressSpaceInstruction
+                updateProof(step8txt);
+                break;
+            case 8:
+                step9();
+                step = 9;
+                instructions.innerHTML = pressSpaceInstruction
+                updateProof(step9txt);
+                break;
+            case 9:
+                step10();
+                step = 10;
+                instructions.innerHTML = pressSpaceInstruction
+                updateProof(step10txt)
+                break;
+            case 10:
+                // step10();
+                step = 11;
+                instructions.innerHTML = pressSpaceInstruction
+                updateProof("");
+                qef.hidden = false;
+                break;
         }
     }
 });
