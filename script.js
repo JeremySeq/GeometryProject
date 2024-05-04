@@ -61,6 +61,7 @@ var instructions = document.getElementById("instructions");
 var construction = document.getElementsByClassName("construction")[0];
 var proof = document.getElementsByClassName("proof")[0];
 var proofHeading = document.getElementsByClassName("proof-heading")[0];
+var qef = document.getElementsByClassName("qef")[0];
 var resetButton = document.getElementsByClassName("reset-btn")[0];
 
 
@@ -151,6 +152,7 @@ document.addEventListener("keypress", function(event) {
             step = 11;
             instructions.innerHTML = pressSpaceInstruction
             updateProof("");
+            qef.hidden = false;
         }
     }
 });
@@ -165,6 +167,7 @@ resetButton.addEventListener("click", function() {
     construction.innerHTML = "<mark>" + step1txt + "</mark>";
     proof.innerHTML = "<mark></mark>";
     proofHeading.hidden = true;
+    qef.hidden = true;
 
     ctx.clearRect(0, 0, c.width, c.height);
 });
