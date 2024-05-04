@@ -17,6 +17,17 @@ function drawLine(x1, y1, x2, y2) {
     ctx.stroke();
 }
 
+function highlightLine(vec1, vec2, color) {
+    prevStyle = ctx.strokeStyle;
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(vec1[0], vec1[1]);
+    ctx.lineTo(vec2[0], vec2[1]);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.strokeStyle = prevStyle;
+}
+
 function drawLine(vec1, vec2) {
     ctx.beginPath();
     ctx.moveTo(vec1[0], vec1[1]);
@@ -116,4 +127,73 @@ function closestPointOnLine(point, line) {
     const closestY = y1 + t * lineVec[1];
 
     return [closestX, closestY];
+}
+
+
+function findCenter(vertices) {
+    let centerX = 0, centerY = 0;
+    for (let vertex of vertices) {
+        centerX += vertex[0];
+        centerY += vertex[1];
+    }
+    centerX /= vertices.length;
+    centerY /= vertices.length;
+    return [centerX, centerY];
+}
+
+function shrinkTriangle(vertices, factor) {
+    const center = findCenter(vertices);
+    const newVertices = [];
+    for (let vertex of vertices) {
+        const direction = [vertex[0] - center[0], vertex[1] - center[1]];
+        const newVertex = [center[0] + factor * direction[0], center[1] + factor * direction[1]];
+        newVertices.push(newVertex);
+    }
+    return newVertices;
+}
+
+function fillTriangle(vec1, vec2, vec3, color) {
+    prevStyle = ctx.fillStyle;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(vec1[0], vec1[1]);
+    ctx.lineTo(vec2[0], vec2[1]);
+    ctx.lineTo(vec3[0], vec3[1]);
+    ctx.lineTo(vec1[0], vec1[1]);
+    ctx.fill();
+    ctx.closePath();
+    ctx.fillStyle = prevStyle;
+}
+
+
+function drawAngleArc(startPoint, vertex, endPoint, color) {
+    prevStyle = ctx.strokeStyle;
+    ctx.strokeStyle = color;
+
+    radius = 50;
+    // Calculate vectors from the vertex to the start and end points
+    const vector1 = [startPoint[0] - vertex[0], startPoint[1] - vertex[1]];
+    const vector2 = [endPoint[0] - vertex[0], endPoint[1] - vertex[1]];
+
+    // Calculate the cross product of the two vectors
+    const crossProduct = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+
+    // Check the sign of the cross product
+    const angleLessThan180 = crossProduct > 0;
+
+    // Calculate the angles between the lines formed by the vertex
+    // and the start and end points
+    const startAngle = Math.atan2(startPoint[1] - vertex[1], startPoint[0] - vertex[0]);
+    const endAngle = Math.atan2(endPoint[1] - vertex[1], endPoint[0] - vertex[0]);
+
+    // Draw arc based on the angle
+    ctx.beginPath();
+    if (angleLessThan180) {
+        ctx.arc(vertex[0], vertex[1], radius, startAngle, endAngle);
+    } else {
+        ctx.arc(vertex[0], vertex[1], radius, endAngle, startAngle);
+    }
+    ctx.stroke();
+
+    ctx.strokeStyle = prevStyle;
 }

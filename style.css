@@ -95,8 +95,8 @@ button:hover {
     font-size: 16pt;
     border: 2px solid gray;
 
-    transition: all .5s;
-    animation: flash .5s infinite;
+    transition: all .1s;
+    /* animation: flash .5s infinite; */
 
     padding: 15pt;
     font-size: 20pt;
@@ -110,11 +110,7 @@ mark {
 ::-webkit-scrollbar {
     width: 10px;
 }
-  
-/* Track */
-::-webkit-scrollbar-track {
-}
-   
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background-color: gray;

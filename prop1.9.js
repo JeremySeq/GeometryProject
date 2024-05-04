@@ -48,3 +48,30 @@ function step6() {
     // step 6: join BF
     drawLine(B, F);
 }
+
+// PROOF
+function step7() {
+    // step 7: BD = BE
+    highlightLine(B, D, "yellow");
+    highlightLine(B, E, "yellow");
+}
+
+function step8() {
+    // step 8: BF is common
+    highlightLine(B, F, "green");
+}
+
+function step9() {
+    // step 9: DF = EF
+    highlightLine(D, F, "red");
+    highlightLine(E, F, "red");
+}
+
+function step10() {
+    // step 10: △BEF = △BDF and ∠DBF = ∠EBF
+    prevLineWidth = ctx.lineWidth;
+    ctx.lineWidth = 3;
+    drawAngleArc(D, B, F, 'purple');
+    drawAngleArc(E, B, F, 'purple');
+    ctx.lineWidth = prevLineWidth;
+}
