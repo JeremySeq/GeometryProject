@@ -114,11 +114,6 @@ function animate() {
     requestAnimationFrame(animate);
     // clear canvas
     ctx.clearRect(0, 0, c.width, c.height);
-
-    // draw points
-    for (var key in points) {
-        labelPoint(points[key], key);
-    }
     
     // draw lines
     for (var i in lines) {
@@ -134,6 +129,11 @@ function animate() {
         point1 = points[circle[0]];
         point2 = points[circle[1]];
         drawCircle(point1[0], point1[1], distance(point1, point2));
+    }
+
+    // draw points
+    for (var key in points) {
+        labelPoint(points[key], key);
     }
 
     // draw first point when creating a line, circle, etc
