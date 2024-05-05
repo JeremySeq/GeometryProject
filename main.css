@@ -42,6 +42,11 @@ button:hover {
     color: black;
 }
 
+button:active {
+    background-color: white;
+    color: black;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
