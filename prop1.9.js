@@ -9,16 +9,12 @@ D = [600, 100]
 
 function step1() {
     // step 1: given angle ABC
-    drawLine(A, B);
-    drawLine(B, C);
-    labelPoint(A, "A");
-    labelPoint(B, "B");
-    labelPoint(C, "C");
+    lines.push("BC");
 }
 
 function step2() {
     // step 2: take random point D on AB
-    labelPoint(D, "D");
+    points["D"] = D;
 }
 
 function step3() {
@@ -31,12 +27,13 @@ function step3() {
     BCvec = [BCvec[0]/BCdist, BCvec[1]/BCdist];
 
     E = [B[0] + BCvec[0]*dist, B[1] + BCvec[1]*dist];
-    labelPoint(E, "E");
+    points["E"] = E;
+    lines.push("BE");
 }
 
 function step4() {
     // step 4: join DE
-    drawLine(D, E);
+    lines.push("DE");
 }
 
 function step5() {
@@ -46,7 +43,7 @@ function step5() {
 
 function step6() {
     // step 6: join BF
-    drawLine(B, F);
+    lines.push("BF");
 }
 
 // PROOF

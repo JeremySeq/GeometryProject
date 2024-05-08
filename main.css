@@ -6,6 +6,7 @@
     --bg: rgb(35, 35, 37);
     --dark-bg: rgb(30, 30, 31);
     --accent: rgb(160, 163, 177);
+    --primary: rgb(209, 209, 209);
 }
 
 body {
@@ -43,7 +44,7 @@ button:hover {
 }
 
 button:active {
-    background-color: white;
+    background-color: var(--primary);
     color: black;
 }
 

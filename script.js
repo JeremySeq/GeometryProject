@@ -1,5 +1,8 @@
 c.width = window.innerWidth/2;
 c.height = window.innerHeight - window.innerHeight/8;
+if (c.width < 400) {
+    c.width = 400;
+}
 ctx.lineWidth = 2;
 ctx.strokeStyle = "gray";
 ctx.fillStyle = "gray";
@@ -29,7 +32,7 @@ function flashInstructions() {
     }, 100)
 }
 
-pressSpaceInstruction = "Press space for the next step";
+pressSpaceInstruction = "Click here for next step";
 
 // step1txt = "Let the angle ABC be the given rectilineal angle.<br>Thus it is required to bisect it.<br>";
 // step2txt = "Let a point D be taken at random on AB;<br>";
@@ -56,6 +59,11 @@ var proofHeading = document.getElementsByClassName("proof-heading")[0];
 var qef = document.getElementsByClassName("qef")[0];
 var resetButton = document.getElementsByClassName("reset-btn")[0];
 
+points = {}; // contains coordinates of point with the letter as the key
+lines = []; // contains string of the two point labels that make the line
+circles = []; // contains string of two point labels, first is the center, second is the radius
+canvasMousePos = [0, 0];
+
 
 instructions.innerHTML = "Choose point A"
 updateConstruction(step1txt);
@@ -66,16 +74,18 @@ c.addEventListener('click', function(evt) {
     if (step == 0 && A == null) {
         A = [mousePos.x, mousePos.y];
         drawPoint(A[0], A[1]);
+        points["A"] = A;
         instructions.innerHTML = "Choose point B"
         flashInstructions();
     } else if (step == 0 && B == null) {
         B = [mousePos.x, mousePos.y];
-        drawPoint(B[0], B[1]);
-        drawLine(A, B);
+        points["B"] = B;
+        lines.push("AB");
         instructions.innerHTML = "Choose point C"
         flashInstructions();
     } else if (step == 0 && C == null) {
         C = [mousePos.x, mousePos.y];
+        points["C"] = C;
         step = 1;
         step1();
         step = 2;
@@ -98,63 +108,69 @@ c.addEventListener('click', function(evt) {
 
 }, false);
 
+function nextStep() {
+    flashInstructions();
+    switch (step) {
+        case 3:
+            step3();
+            step = 4;
+            instructions.innerHTML = pressSpaceInstruction
+            updateConstruction(step4txt);
+            break;
+        case 4:
+            step4();
+            step = 5;
+            instructions.innerHTML = pressSpaceInstruction
+            updateConstruction(step5txt);
+            break;
+        case 5:
+            step5();
+            step = 6;
+            instructions.innerHTML = pressSpaceInstruction
+            updateConstruction(step6txt);
+            break;
+        case 6:
+            step6();
+            step7()
+            step = 7;
+            instructions.innerHTML = pressSpaceInstruction
+            updateConstruction("");
+            updateProof(step7txt);
+            break;
+        case 7:
+            step8();
+            step = 8;
+            instructions.innerHTML = pressSpaceInstruction
+            updateProof(step8txt);
+            break;
+        case 8:
+            step9();
+            step = 9;
+            instructions.innerHTML = pressSpaceInstruction
+            updateProof(step9txt);
+            break;
+        case 9:
+            step10();
+            step = 10;
+            instructions.innerHTML = pressSpaceInstruction
+            updateProof(step10txt)
+            break;
+        case 10:
+            step = 11;
+            instructions.innerHTML = pressSpaceInstruction
+            updateProof("");
+            qef.hidden = false;
+            break;
+    }
+}
+
+instructions.addEventListener("click", function(e) {
+    nextStep();
+});
+
 document.addEventListener("keypress", function(event) {
     if (event.code == "Space") {
-
-        flashInstructions();
-        switch (step) {
-            case 3:
-                step3();
-                step = 4;
-                instructions.innerHTML = pressSpaceInstruction
-                updateConstruction(step4txt);
-                break;
-            case 4:
-                step4();
-                step = 5;
-                instructions.innerHTML = pressSpaceInstruction
-                updateConstruction(step5txt);
-                break;
-            case 5:
-                step5();
-                step = 6;
-                instructions.innerHTML = pressSpaceInstruction
-                updateConstruction(step6txt);
-                break;
-            case 6:
-                step6();
-                step7()
-                step = 7;
-                instructions.innerHTML = pressSpaceInstruction
-                updateConstruction("");
-                updateProof(step7txt);
-                break;
-            case 7:
-                step8();
-                step = 8;
-                instructions.innerHTML = pressSpaceInstruction
-                updateProof(step8txt);
-                break;
-            case 8:
-                step9();
-                step = 9;
-                instructions.innerHTML = pressSpaceInstruction
-                updateProof(step9txt);
-                break;
-            case 9:
-                step10();
-                step = 10;
-                instructions.innerHTML = pressSpaceInstruction
-                updateProof(step10txt)
-                break;
-            case 10:
-                // step10();
-                step = 11;
-                instructions.innerHTML = pressSpaceInstruction
-                updateProof("");
-                qef.hidden = false;
-                break;
-        }
+        instructions.click();
     }
 });
 
@@ -170,5 +186,72 @@ resetButton.addEventListener("click", function() {
     proofHeading.hidden = true;
     qef.hidden = true;
 
-    ctx.clearRect(0, 0, c.width, c.height);
+    points = {};
+    lines = [];
+    circles = [];
 });
+
+canvas.addEventListener("mousemove", function(e) {
+    canvasMousePos = getMousePos(canvas, e);
+});
+
+
+function animate() {
+    // call again next time we can draw
+    requestAnimationFrame(animate);
+    // clear canvas
+    ctx.clearRect(0, 0, c.width, c.height);
+    
+    // draw lines
+    for (var i in lines) {
+        line = lines[i];
+        point1 = points[line[0]];
+        point2 = points[line[1]];
+        drawLine(point1, point2);
+    }
+
+    // draw circles
+    for (var i in circles) {
+        circle = circles[i];
+        point1 = points[circle[0]];
+        point2 = points[circle[1]];
+        drawCircle(point1[0], point1[1], distance(point1, point2));
+    }
+
+    if (step == 0) {
+        drawPoint(canvasMousePos.x, canvasMousePos.y)
+
+        if (A == null) {
+            labelPoint([canvasMousePos.x, canvasMousePos.y], "A");
+        } else if (B == null) {
+            labelPoint([canvasMousePos.x, canvasMousePos.y], "B");
+            drawLine(A, [canvasMousePos.x, canvasMousePos.y]);
+        } else if (C == null) {
+            labelPoint([canvasMousePos.x, canvasMousePos.y], "C");
+            drawLine(B, [canvasMousePos.x, canvasMousePos.y]);
+        }
+    } else if (step == 2) {
+        tempD = closestPointOnLine([canvasMousePos.x, canvasMousePos.y], [A, B]);
+        labelPoint(tempD, "D");
+    }
+    if (step >= 7) {
+        step7();
+    }
+    if (step >= 8) {
+        step8();
+    }
+    if (step >= 9) {
+        step9();
+    }
+    if (step >= 10) {
+        step10();
+    }
+
+    // draw points
+    for (var key in points) {
+        labelPoint(points[key], key);
+    }
+
+}
+
+animate();

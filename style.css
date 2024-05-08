@@ -5,6 +5,7 @@
     padding: 20px;
     overflow-y: auto;
     max-height: 40rem;
+    min-width: 200px;
 }
 
 .side-panel h2 {
@@ -47,18 +48,16 @@ r {
 
 .instructions {
     background-color: var(--bg);
-    padding: 20px;
-    font-size: 16pt;
     border: 2px solid gray;
-
+    outline: 2px solid var(--primary);
     transition: all .1s;
     /* animation: flash .5s infinite; */
-
-    padding: 15pt;
-    font-size: 20pt;
+    padding: 12pt;
+    font-size: 18pt;
 }
 
 mark {
     background-color: var(--accent);
     color: black;
 }
+

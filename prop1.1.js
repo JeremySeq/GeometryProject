@@ -11,10 +11,7 @@ function prop1() {
 }
 
 function p1_step1() {
-    // step 1: given line AB
-    drawLine(D, E);
-    labelPoint(D[0], E[1], "D");
-    labelPoint(D[0], E[1], "E");
+    // step 1: given line DE
 }
 
 function p1_step2() {
@@ -47,11 +44,11 @@ function p1_step4() {
     } else {
         F = intersec2;
     }
-    labelPoint(F, "F");
+    points["F"] = F;
 }
 
 function p1_step5() {
     // step 5: join AC, BC and AD, BD
-    drawLine(D, F);
-    drawLine(E, F);
+    lines.push("DF");
+    lines.push("EF");
 }
