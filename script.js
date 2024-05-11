@@ -1,5 +1,5 @@
 c.width = window.innerWidth/2;
-c.height = window.innerHeight - window.innerHeight/8;
+c.height = window.innerHeight - window.innerHeight/5;
 if (c.width < 400) {
     c.width = 400;
 }
@@ -216,6 +216,12 @@ function animate() {
         point1 = points[circle[0]];
         point2 = points[circle[1]];
         drawCircle(point1[0], point1[1], distance(point1, point2));
+    }
+
+    if (step == 0) {
+        canvas.style.cursor = "none";
+    } else {
+        canvas.style.cursor = "auto";
     }
 
     if (step == 0) {

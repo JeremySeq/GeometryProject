@@ -8,6 +8,10 @@
     min-width: 200px;
 }
 
+#canvas {
+    border-bottom: none;
+}
+
 .side-panel h2 {
     font-size: 18pt;
 }
@@ -53,7 +57,7 @@ r {
     transition: all .1s;
     /* animation: flash .5s infinite; */
     padding: 12pt;
-    font-size: 18pt;
+    font-size: 22pt;
 }
 
 mark {
