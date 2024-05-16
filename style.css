@@ -58,6 +58,8 @@ r {
     /* animation: flash .5s infinite; */
     padding: 12pt;
     font-size: 22pt;
+    user-select: none;
+    -moz-user-select: none;
 }
 
 mark {

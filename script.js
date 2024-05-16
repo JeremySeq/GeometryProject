@@ -38,7 +38,7 @@ function flashInstructions() {
     }, 100)
 }
 
-pressSpaceInstruction = "Click here for next step";
+pressSpaceInstruction = "Click for next step";
 
 // step1txt = "Let the angle ABC be the given rectilineal angle.<br>Thus it is required to bisect it.<br>";
 // step2txt = "Let a point D be taken at random on AB;<br>";
@@ -83,12 +83,14 @@ c.addEventListener('click', function(evt) {
         points["A"] = A;
         instructions.innerHTML = "Choose point B"
         flashInstructions();
+        return;
     } else if (step == 0 && B == null) {
         B = [mousePos.x, mousePos.y];
         points["B"] = B;
         lines.push("AB");
         instructions.innerHTML = "Choose point C"
         flashInstructions();
+        return;
     } else if (step == 0 && C == null) {
         C = [mousePos.x, mousePos.y];
         points["C"] = C;
@@ -110,7 +112,10 @@ c.addEventListener('click', function(evt) {
         instructions.innerHTML = pressSpaceInstruction
         updateConstruction(step3txt);
         flashInstructions();
+        return;
     }
+
+    nextStep();
 
 }, false);
 
