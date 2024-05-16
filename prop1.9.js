@@ -49,26 +49,26 @@ function step6() {
 // PROOF
 function step7() {
     // step 7: BD = BE
-    highlightLine(B, D, "yellow");
-    highlightLine(B, E, "yellow");
+    highlightLine(B, D, "rgb(31, 152, 227)");
+    highlightLine(B, E, "rgb(31, 152, 227)");
 }
 
 function step8() {
     // step 8: BF is common
-    highlightLine(B, F, "green");
+    highlightLine(B, F, "rgb(18, 189, 111)");
 }
 
 function step9() {
     // step 9: DF = EF
-    highlightLine(D, F, "red");
-    highlightLine(E, F, "red");
+    highlightLine(D, F, "rgb(229, 0, 67)");
+    highlightLine(E, F, "rgb(229, 0, 67)");
 }
 
 function step10() {
     // step 10: △BEF = △BDF and ∠DBF = ∠EBF
     prevLineWidth = ctx.lineWidth;
     ctx.lineWidth = 3;
-    drawAngleArc(D, B, F, 'purple');
-    drawAngleArc(E, B, F, 'purple');
+    drawAngleArc(D, B, F, 'hsl(53, 79%, 57%)');
+    drawAngleArc(E, B, F, 'hsl(53, 79%, 57%)');
     ctx.lineWidth = prevLineWidth;
 }
