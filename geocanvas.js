@@ -13,7 +13,20 @@ lastPointLetter = null;
 lines = []; // contains string of the two point labels that make the line
 circles = []; // contains string of two point labels, first is the center, second is the radius
 
+canvasMousePos = [0, 0];
+
 firstPoint = null;
+
+function getNextPointLetter() {
+    if (lastPointLetter == null) {
+        return "A";
+    } else {
+        const codePoint = lastPointLetter.codePointAt(0);
+        const nextCodePoint = codePoint + 1;
+        nextLetter = String.fromCodePoint(nextCodePoint);
+        return nextLetter;
+    }
+}
 
 function selectTool(tool) {
     selectedTool.classList.remove("active");
@@ -52,14 +65,7 @@ canvas.addEventListener('click', function(evt) {
     var mousePos = getMousePos(canvas, evt);
 
     if (selectedTool.innerHTML == "Point") {
-        nextLetter = null;
-        if (lastPointLetter == null) {
-            nextLetter = "A";
-        } else {
-            const codePoint = lastPointLetter.codePointAt(0);
-            const nextCodePoint = codePoint + 1;
-            nextLetter = String.fromCodePoint(nextCodePoint);
-        }
+        nextLetter = getNextPointLetter();
         
         points[nextLetter] = [mousePos['x'], mousePos['y']];
         lastPointLetter = nextLetter;
@@ -109,6 +115,10 @@ document.getElementsByClassName('reset')[0].addEventListener('click', function(e
     ctx.clearRect(0, 0, c.width, c.height);
 });
 
+canvas.addEventListener("mousemove", function(e) {
+    canvasMousePos = getMousePos(canvas, e);
+});
+
 function animate() {
     // call again next time we can draw
     requestAnimationFrame(animate);
@@ -141,6 +151,10 @@ function animate() {
         labelPointWithColor(points[firstPoint], firstPoint, "red");
     }
 
+    if (selectedTool.innerHTML == "Point") {
+        nextLetter = getNextPointLetter();
+        labelPoint([canvasMousePos.x, canvasMousePos.y], nextLetter);
+    }
 }
 
 animate();
