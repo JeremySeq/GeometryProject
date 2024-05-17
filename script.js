@@ -75,6 +75,11 @@ setInterval(function() {
 }, 15);
 
 function switchLerpLine(lines) {
+    if (lerpAlpha < 1) {
+        if (lines.includes("DF")) {
+            drawF = true;
+        }
+    }
     lerpAlpha = 0;
     currentlyDrawing = lines;
 }
@@ -221,6 +226,7 @@ resetButton.addEventListener("click", function() {
     points = {};
     lines = [];
     circles = [];
+    drawF = false;
 });
 
 canvas.addEventListener("mousemove", function(e) {
