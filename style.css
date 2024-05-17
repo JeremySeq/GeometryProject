@@ -67,3 +67,74 @@ mark {
     color: black;
 }
 
+.info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--bg);
+    border-radius: 100%;
+    width: 45px;
+    height: 45px;
+    outline: none;
+    padding: 10px;
+    border: 2px solid gray;
+    color: gray;
+    transition: all .1s;
+    cursor: pointer;
+    font-size: 12pt;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.info-popup {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: fit-content;
+    width: 30%;
+    height: 40%;
+    border: 2px solid gray;
+    background-color: var(--bg);
+    padding: 20px;
+    font-size: 14pt;
+    text-align: center;
+}
+
+.info-popup i {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+.close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 32px;
+    height: 32px;
+    opacity: .3;
+}
+.close:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: gray;
+}
+.close:before {
+    transform: rotate(45deg);
+}
+.close:after {
+    transform: rotate(-45deg);
+}
+
+.prop-num-info {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

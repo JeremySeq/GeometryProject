@@ -19,8 +19,11 @@ body {
 }
 
 h1 {
-    margin-left: 15px;
-    font-size: 16pt;
+    font-size: 20pt;
+}
+
+h2 {
+    font-size: 14pt;
 }
 
 #canvas {
@@ -60,4 +63,13 @@ button:active {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent);
 }

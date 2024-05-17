@@ -304,3 +304,14 @@ function animate() {
 }
 
 animate();
+
+
+document.getElementById("info-button").addEventListener("click", function() {
+    info_popup = document.getElementById("info-popup");
+    info_popup.hidden = !info_popup.hidden;
+});
+
+document.getElementById("close-info-popup-button").addEventListener("click", function() {
+    info_popup = document.getElementById("info-popup");
+    info_popup.hidden = true;
+});
