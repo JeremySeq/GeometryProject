@@ -243,8 +243,8 @@ function animate() {
             lerpedLine = getLerpedLine([point1, point2], lerpAlpha);
             drawLine(lerpedLine[0], lerpedLine[1]);
         } else {
-        drawLine(point1, point2);
-    }
+            drawLine(point1, point2);
+        }
     }
 
     // draw circles
@@ -262,22 +262,22 @@ function animate() {
     }
 
     if (!mobileAndTabletCheck()) {
-    if (step == 0) {
-        drawPoint(canvasMousePos.x, canvasMousePos.y)
+        if (step == 0) {
+            drawPoint(canvasMousePos.x, canvasMousePos.y)
 
-        if (A == null) {
-            labelPoint([canvasMousePos.x, canvasMousePos.y], "A");
-        } else if (B == null) {
-            labelPoint([canvasMousePos.x, canvasMousePos.y], "B");
-            drawLine(A, [canvasMousePos.x, canvasMousePos.y]);
-        } else if (C == null) {
-            labelPoint([canvasMousePos.x, canvasMousePos.y], "C");
-            drawLine(B, [canvasMousePos.x, canvasMousePos.y]);
+            if (A == null) {
+                labelPoint([canvasMousePos.x, canvasMousePos.y], "A");
+            } else if (B == null) {
+                labelPoint([canvasMousePos.x, canvasMousePos.y], "B");
+                drawLine(A, [canvasMousePos.x, canvasMousePos.y]);
+            } else if (C == null) {
+                labelPoint([canvasMousePos.x, canvasMousePos.y], "C");
+                drawLine(B, [canvasMousePos.x, canvasMousePos.y]);
+            }
+        } else if (step == 2) {
+            tempD = closestPointOnLine([canvasMousePos.x, canvasMousePos.y], [A, B]);
+            labelPoint(tempD, "D");
         }
-    } else if (step == 2) {
-        tempD = closestPointOnLine([canvasMousePos.x, canvasMousePos.y], [A, B]);
-        labelPoint(tempD, "D");
-    }
     }
     
     if (step >= 7) {
@@ -298,11 +298,9 @@ function animate() {
         if (key == "F" && !drawF) {
             
         } else {
-        labelPoint(points[key], key);
+            labelPoint(points[key], key);
+        }
     }
-
-}
-
 }
 
 animate();
