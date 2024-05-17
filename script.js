@@ -40,21 +40,15 @@ function flashInstructions() {
 
 pressSpaceInstruction = "Click for next step";
 
-// step1txt = "Let the angle ABC be the given rectilineal angle.<br>Thus it is required to bisect it.<br>";
-// step2txt = "Let a point D be taken at random on AB;<br>";
-// step3txt = "let <r>BE</r> be cut off from <r>BC</r> equal to <r>BD</r>;<br>";
-// step4txt = "let <r>DE</r> be joined,<br>";
-// step5txt = "and on <r>DE</r> let the equilateral triangle DEF be constructed;<br>";
-// step6txt = "let <r>BF</r> be joined.<br>";
 step1txt = "1. Draw given rectilineal angle ∠ABC<br>";
 step2txt = "2. Take random point D on <r>AB</r><br>";
-step3txt = "3. Cut <r>BE</r> from <r>BC</r> equal to <r>BD</r><br>";
-step4txt = "4. Join <r>DE</r><br>";
-step5txt = "5. Create equilateral triangle DEF on <r>DE</r><br>";
-step6txt = "6. Join <r>BF</r><br>";
-step7txt = "7. <r>BD</r> = <r>BE</r><br>";
+step3txt = "3. Cut <r>BE</r> from <r>BC</r> equal to <r>BD</r> (Prop. 1.3)<br>";
+step4txt = "4. Join <r>DE</r> (Post. 1)<br>";
+step5txt = "5. Create equilateral triangle DEF on <r>DE</r> (Prop. 1.1)<br>";
+step6txt = "6. Join <r>BF</r> (Post. 1)<br>";
+step7txt = "7. <r>BD</r> = <r>BE</r> (St. 3)<br>";
 step8txt = "8. <r>BF</r> is common to both triangles<br>";
-step9txt = "9. <r>DF</r> = <r>EF</r><br>";
+step9txt = "9. <r>DF</r> = <r>EF</r> (St. 5)<br>";
 step10txt = "10. Therefore, △BEF = △BDF and ∠DBF = ∠EBF<br>An angle is bisected when the two angles are equal.<br>Therefore ∠ABC has been bisected by line <r>BF</r>";
 
 
