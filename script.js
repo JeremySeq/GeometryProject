@@ -255,6 +255,18 @@ function animate() {
         drawCircle(point1[0], point1[1], distance(point1, point2));
     }
 
+    show_full_diagram_checkbox = document.getElementById("full-diagram-checkbox");
+    if (show_full_diagram_checkbox.checked) {
+        if (step >= 4) {
+            drawCircle(points["B"][0], points["B"][1], distance(points["B"], points["D"]));
+        }
+        if (step >= 6) {
+            dist = distance(D, E);
+            drawCircle(D[0], D[1], dist);
+            drawCircle(E[0], E[1], dist);
+        }
+    }
+
     if (step == 0) {
         canvas.style.cursor = "none";
     } else {
