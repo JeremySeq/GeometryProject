@@ -58,6 +58,27 @@ step9txt = "9. <r>DF</r> = <r>EF</r><br>";
 step10txt = "10. Therefore, △BEF = △BDF and ∠DBF = ∠EBF<br>An angle is bisected when the two angles are equal.<br>Therefore ∠ABC has been bisected by line <r>BF</r>";
 
 
+lerpAlpha = 0;
+currentlyDrawing = [];
+
+drawF = false;
+
+setInterval(function() {
+    lerpAlpha = Math.min(lerpAlpha + .05, 1);
+    if (lerpAlpha == 1) {
+        if (currentlyDrawing.includes("DF")) {
+            drawF = true;
+        }
+        currentlyDrawing = [];
+        lerpAlpha = 0;
+    }
+}, 15);
+
+function switchLerpLine(lines) {
+    lerpAlpha = 0;
+    currentlyDrawing = lines;
+}
+
 var instructions = document.getElementById("instructions");
 var construction = document.getElementsByClassName("construction")[0];
 var proof = document.getElementsByClassName("proof")[0];
@@ -218,7 +239,12 @@ function animate() {
         line = lines[i];
         point1 = points[line[0]];
         point2 = points[line[1]];
+        if (currentlyDrawing.includes(line)) {
+            lerpedLine = getLerpedLine([point1, point2], lerpAlpha);
+            drawLine(lerpedLine[0], lerpedLine[1]);
+        } else {
         drawLine(point1, point2);
+    }
     }
 
     // draw circles
@@ -269,8 +295,13 @@ function animate() {
 
     // draw points
     for (var key in points) {
+        if (key == "F" && !drawF) {
+            
+        } else {
         labelPoint(points[key], key);
     }
+
+}
 
 }
 

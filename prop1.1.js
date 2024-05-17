@@ -51,4 +51,5 @@ function p1_step5() {
     // step 5: join AC, BC and AD, BD
     lines.push("DF");
     lines.push("EF");
+    switchLerpLine(["DF", "EF"]);
 }

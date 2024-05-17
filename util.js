@@ -198,3 +198,19 @@ function drawAngleArc(startPoint, vertex, endPoint, color) {
 
     ctx.strokeStyle = prevStyle;
 }
+
+function lerp(a, b, alpha) {
+    return a + alpha * (b - a)
+}
+
+function getLerpedLine(line, alpha) {
+    start = line[0];
+    end = line[1];
+
+    vec = [end[0] - start[0], end[1] - start[1]];
+    dist = distance(start, end);
+
+    lerped_vec = [vec[0] * alpha, vec[1] * alpha];
+
+    return [start, [start[0] + lerped_vec[0], start[1] + lerped_vec[1]]];
+}

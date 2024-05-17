@@ -29,11 +29,13 @@ function step3() {
     E = [B[0] + BCvec[0]*dist, B[1] + BCvec[1]*dist];
     points["E"] = E;
     lines.push("BE");
+    switchLerpLine("BE");
 }
 
 function step4() {
     // step 4: join DE
     lines.push("DE");
+    switchLerpLine(["DE"]);
 }
 
 function step5() {
@@ -44,6 +46,7 @@ function step5() {
 function step6() {
     // step 6: join BF
     lines.push("BF");
+    switchLerpLine(["BF"]);
 }
 
 // PROOF
